@@ -11,8 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
-TODO: Put a short description of the package here that helps potential users know whether this
-package might be useful for them.
+Hero Effect for common words of text widget (something like magic move in keynote)
 
 ## Features
 
@@ -24,11 +23,24 @@ TODO: List prerequisites and provide or point to information on how to start usi
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples to `/example` folder.
+Usage is easily and likes `Hero`,but obviously the child should be `Text`. don't forget to
+increase `transitionDuration` look at example.
 
 ```dart
-
-const like = 'sample';
+HeroText
+(
+tag: '
+tag
+'
+,
+child: Text
+('To be, or not to be, that is the question
+'
+,
+style: Theme.of(context).
+textTheme.headline5,)
+,
+)
 ```
 
 ## Additional information
