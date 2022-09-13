@@ -26,11 +26,11 @@ TODO: List prerequisites and provide or point to information on how to start usi
  don't forget to increase `transitionDuration` look at example.
 ```dart
 HeroText(
-tag: 'tag',
-child: Text(
-'To be, or not to be, that is the question',
-style: Theme.of(context).textTheme.headline5,
-),
+   tag: 'tag',
+   child: Text(
+       'To be, or not to be, that is the question',
+       style: Theme.of(context).textTheme.headline5,
+   ),
 )
 ```
 
