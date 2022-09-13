@@ -80,11 +80,19 @@ class _HeroTextState extends State<HeroText> {
               return AnimatedBuilder(
                   animation: animation,
                   builder: (context, __) {
-                    return Text(
-                      split[index],
-                      style: TextStyle.lerp(
-                          fromText.style, toText.style, animation.value),
-                    );
+                    if (flightDirection == HeroFlightDirection.push) {
+                      return Text(
+                        split[index],
+                        style: TextStyle.lerp(
+                            fromText.style, toText.style, animation.value),
+                      );
+                    } else {
+                      return Text(
+                        split[index],
+                        style: TextStyle.lerp(
+                            toText.style, fromText.style, animation.value),
+                      );
+                    }
                   });
             },
             tag: '${widget.tag}${wordTagList[index]}',
