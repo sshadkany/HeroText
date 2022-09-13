@@ -16,22 +16,22 @@ Hero Effect for common words of text widget (something like magic move in keynot
 ## Features
 
 TODO: List what your package can do. Maybe include images, gifs, or videos.
-
+[HeroText]()
 ## Getting started
 
 TODO: List prerequisites and provide or point to information on how to start using the package.
 
 ## Usage
  Usage is easily and likes `Hero`,but obviously the child should be `Text`.
- don't forget to increase `transitionDuration` look at example.
+ don't forget to increase `transitionDuration` (look at example for more).
 ```dart
-HeroText(
-   tag: 'tag',
-   child: Text(
-       'To be, or not to be, that is the question',
-       style: Theme.of(context).textTheme.headline5,
-   ),
-)
+// HeroText(
+//    tag: 'tag',
+//    child: Text(
+//        'To be, or not to be, that is the question',
+//        style: Theme.of(context).textTheme.headline5,
+//    ),
+// )
 ```
 
 ## Additional information
