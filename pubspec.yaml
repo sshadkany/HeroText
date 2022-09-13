@@ -2,7 +2,7 @@ name: hero_text
 description: Hero Effect for common words of text widget.
 version: 0.0.1
 homepage:
-  https://github:com/sshadkany/HeroText
+  https://github.com/sshadkany/HeroText
 environment:
   sdk: ">=2.17.1 <3.0.0"
   flutter: ">=1.17.0"
