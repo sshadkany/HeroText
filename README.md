@@ -16,7 +16,7 @@ Hero Effect for common words of text widget (something like magic move in keynot
 ## Features
 
 TODO: List what your package can do. Maybe include images, gifs, or videos.
-[HeroText]()
+[HeroText](https://github.com/sshadkany/HeroText/blob/master/example/img/BrowserPreview.gif?raw=true)
 ## Getting started
 
 TODO: List prerequisites and provide or point to information on how to start using the package.
