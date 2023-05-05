@@ -3,6 +3,9 @@ library hero_text;
 import 'package:flutter/material.dart';
 import 'package:hero_text/dartui/calculate_paragraph.dart';
 
+/// Hero Effect for text
+///
+///
 class HeroText extends StatefulWidget {
   const HeroText({required this.tag, required this.child, Key? key})
       : super(key: key);
@@ -53,56 +56,62 @@ class _HeroTextState extends State<HeroText> {
 
   @override
   Widget build(BuildContext context) {
-    var calculateParagraph = CalculateParagraph(
-      splitChar: splitChar,
-      maxWidth: MediaQuery.of(context).size.width,
-      paragraphStyle: widget.child.style?.getParagraphStyle(),
-      text: fromString,
-      textStyle: widget.child.style?.getTextStyle(),
-    )..layout();
-    var positions = calculateParagraph.positions;
-    var split = fromString.split(splitChar);
-    return Stack(
-      children: List.generate(positions.length, (index) {
-        return Positioned.fromRect(
-          rect: positions[index],
-          child: Hero(
-            createRectTween: (begin, end) {
-              return RectTween(begin: begin, end: end);
-            },
-            flightShuttleBuilder: (flightContext, animation, flightDirection,
-                fromHeroContext, toHeroContext) {
-              var fromHero = fromHeroContext.widget as Hero;
-              var fromText = fromHero.child as Text;
+    return LayoutBuilder(
+      builder: (context, boxConstraint) {
+        var calculateParagraph = CalculateParagraph(
+            splitChar: splitChar,
+            maxWidth: boxConstraint.biggest.width,
+            paragraphStyle: widget.child.style?.getParagraphStyle(),
+            text: fromString,
+            textStyle: widget.child.style?.getTextStyle(),
+            maxLines: widget.child.maxLines)
+          ..layout();
+        var positions = calculateParagraph.positions;
+        var split = fromString.split(splitChar);
 
-              var toHero = toHeroContext.widget as Hero;
-              var toText = toHero.child as Text;
-              return AnimatedBuilder(
-                  animation: animation,
-                  builder: (context, __) {
-                    if (flightDirection == HeroFlightDirection.push) {
-                      return Text(
-                        split[index],
-                        style: TextStyle.lerp(
-                            fromText.style, toText.style, animation.value),
-                      );
-                    } else {
-                      return Text(
-                        split[index],
-                        style: TextStyle.lerp(
-                            toText.style, fromText.style, animation.value),
-                      );
-                    }
-                  });
-            },
-            tag: '${widget.tag}${wordTagList[index]}',
-            child: Text(
-              split[index],
-              style: widget.child.style,
-            ),
-          ),
+        return Stack(
+          children: List.generate(positions.length, (index) {
+            return Positioned.fromRect(
+              rect: positions[index],
+              child: Hero(
+                createRectTween: (begin, end) {
+                  return RectTween(begin: begin, end: end);
+                },
+                flightShuttleBuilder: (flightContext, animation,
+                    flightDirection, fromHeroContext, toHeroContext) {
+                  var fromHero = fromHeroContext.widget as Hero;
+                  var fromText = fromHero.child as Text;
+
+                  var toHero = toHeroContext.widget as Hero;
+                  var toText = toHero.child as Text;
+                  return AnimatedBuilder(
+                      animation: animation,
+                      builder: (context, __) {
+                        if (flightDirection == HeroFlightDirection.push) {
+                          return Text(
+                            split[index],
+                            style: TextStyle.lerp(
+                                fromText.style, toText.style, animation.value),
+                          );
+                        } else {
+                          return Text(
+                            split[index],
+                            style: TextStyle.lerp(
+                                toText.style, fromText.style, animation.value),
+                          );
+                        }
+                      });
+                },
+                tag: '${widget.tag}${wordTagList[index]}',
+                child: Text(
+                  split[index],
+                  style: widget.child.style,
+                ),
+              ),
+            );
+          }),
         );
-      }),
+      },
     );
   }
 }

@@ -1,5 +1,5 @@
 name: hero_text
-description: Hero Effect for common words of text widget.
+description: A beatiful hero Effect for the same words of text widget (similar to magic move in keynote).
 version: 0.0.1
 homepage:
   https://github.com/sshadkany/HeroText

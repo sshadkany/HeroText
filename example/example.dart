@@ -60,15 +60,20 @@ class PageB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-            padding: const EdgeInsets.only(top: 100),
-            color: Colors.blue,
-            child: Center(
-                child: HeroText(
-                    tag: 'tag',
-                    child: Text(
-                      'wish it for others too',
-                      style: Theme.of(context).textTheme.headline1,
-                    )))));
+        body: Center(
+      child: Container(
+          width: 400,
+          height: 400,
+          padding: const EdgeInsets.only(top: 100),
+          color: Colors.blue,
+          child: Center(
+              child: HeroText(
+                  tag: 'tag',
+                  child: Text(
+                    'wish it for others too',
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.headline1,
+                  )))),
+    ));
   }
 }

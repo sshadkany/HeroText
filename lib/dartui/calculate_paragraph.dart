@@ -33,20 +33,22 @@
 // ignore_for_file: omit_local_variable_types
 import 'dart:ui' as ui;
 import 'package:flutter/painting.dart';
-
+/// calculate paragraph size
 class CalculateParagraph {
   CalculateParagraph(
       {required this.paragraphStyle,
       required this.textStyle,
       required this.text,
       required this.splitChar,
-      required this.maxWidth});
+      required this.maxWidth,
+      this.maxLines});
 
   ui.ParagraphStyle? paragraphStyle;
   ui.TextStyle? textStyle;
   String text;
   double maxWidth;
   String splitChar;
+  int? maxLines;
 
   void layout() => _layout();
 
@@ -59,9 +61,16 @@ class CalculateParagraph {
     double sum = 0;
     double left = 0;
     double top = 0;
+    int numberOfLines = 0;
     for (var r in _runs) {
       sum += r.paragraph.maxIntrinsicWidth;
       if (sum > maxWidth) {
+        numberOfLines = numberOfLines + 1;
+        if (maxLines != null) {
+          if (numberOfLines >= maxLines!) {
+            return;
+          }
+        }
         left = 0;
         sum = r.paragraph.maxIntrinsicWidth;
         top = top + r.paragraph.height;
@@ -108,6 +117,8 @@ class CalculateParagraph {
       ..addText(text.substring(start, end));
     final paragraph = builder.build();
     paragraph.layout(const ui.ParagraphConstraints(width: double.infinity));
+    var h = paragraph.height;
+
     final run = TextRun(start, end, paragraph);
     _runs.add(run);
   }
